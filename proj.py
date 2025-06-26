@@ -13,7 +13,8 @@ credits = pd.read_csv('credits.csv')
 keywords = pd.read_csv('keywords.csv')
 
 # --- Preprocessing ---
-metadata = metadata[metadata['id'].apply(lambda x: x.isdigit())]
+metadata = metadata[pd.to_numeric(metadata['id'], errors='coerce').notna()]
+
 metadata['id'] = metadata['id'].astype(int)
 credits['id'] = credits['id'].astype(int)
 keywords['id'] = keywords['id'].astype(int)
